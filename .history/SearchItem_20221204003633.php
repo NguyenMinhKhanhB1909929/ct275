@@ -1,20 +1,11 @@
 <?php
-
-use LDAP\Result;
-
   include "./include/header.php";
 ?>
 <?php
-  if(!isset($_GET['catId']) || $_GET['catId']==NULL) {
+  if($_SERVER['REQUEST_METHOD']=='POST' && $_POST['search']!='') {
+    $tukhoa = $_POST['search'];
+    $search_product = $pd->searchProduct($tukhoa);
 
-  } else {
-    $id = $_GET['catId'];
-  }
-    // if($_SERVER['REQUEST_METHOD'] === 'POST') {
-    //     $catName = $_POST['catName'];
-
-    //     $updateCategory = $cat->update_category($catName,$id);
-    // }
 ?>
       <div class="app__container">
         <div class="grid">
@@ -87,15 +78,7 @@ use LDAP\Result;
               >Trang chủ</a
             >
             <i class="link__curr-icon fas fa-angle-right"></i>
-            <span class="link__curr-text isHere">
-              <?php
-               $getCatName = $cat->getCatById($id);
-                if($getCatName) {
-                  while($resultCatName = $getCatName->fetch_assoc())
-                    echo $resultCatName['catName'];
-                }
-              ?>
-            </span>
+            <span class="link__curr-text isHere">Tất cả sản phẩm</span>
           </div>
           <div class="grid__row app__content">
             <div class="grid__column-2">
@@ -105,19 +88,15 @@ use LDAP\Result;
                   Danh mục
                 </h3>
                 <ul class="category-list">
-                  <li class="category-item1">
-                    <a href="index.php" class="category-item__link">Tất cả sản phẩm</a>
+                  <li class="category-item1 category-item--active">
+                    <div class="category-item__link">Tất cả sản phẩm</div>
                   </li>
                    <?php
                     $categoryList = $cat->getCat();
                     if($categoryList) {
                       while($resultCat = $categoryList->fetch_assoc()){
                   ?>
-                  <li class="category-item1 <?php
-                    if($id == $resultCat['catId']) {
-                      echo "category-item--active";
-                    }
-                  ?>">
+                  <li class="category-item1">
                     <a href="./productByCat.php?catId=<?php echo $resultCat['catId']; ?>" class="category-item__link"><?php echo $resultCat['catName'];?></a>
                   </li>
                   <?php
@@ -161,6 +140,13 @@ use LDAP\Result;
             </div>
 
             <div class="grid__column-10">
+              <div class="text-search-content">
+                <i class="text-search-icon fas fa-search-plus"></i>
+                <span class="text-search-content-title"
+                  >Kết quả của tìm kiếm "
+                  <span class="text-search-main"><?php echo $tukhoa;?></span> "</span
+                >
+              </div>
               <!-- Home Filter -->
               <div class="home-filter">
                 <span class="home-filter__label">Sắp xếp theo</span>
@@ -223,9 +209,9 @@ use LDAP\Result;
               <div class="home-product page-current">
                 <div class="grid__row" style="width:100%">
                 <?php
-                  $getProductByCat = $pd->getProductByCat($id);
-                  if($getProductByCat) {
-                    while ($result = $getProductByCat->fetch_assoc()){
+                  $getProduct = $pd->searchProduct($tukhoa);
+                  if($getProduct) {
+                    while ($result = $getProduct->fetch_assoc()){
                   ?>
                   <div class="grid__column-2-4">
                     <a href="./ItemDes.php?productId=<?php echo $result['productId']; ?>" class="home-product-item__link">
@@ -461,5 +447,9 @@ use LDAP\Result;
         </div>
       </div>
 <?php
-  include "include/footer.php";
+  } else {
+    header("Location:index.php");
+  }
+  include "./include/footer.php";
 ?>
+

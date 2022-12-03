@@ -1,4 +1,4 @@
-<?php include "../nienluan/include/header.php"; ?>
+<?php include "./include/header.php"; ?>
 <?php
   if(isset($_GET['orderId']) && $_GET['orderId']=='order') {
     $userId = Session::get('userId');
@@ -192,4 +192,4 @@ $checkLogin = Session::get('userLogin');
         </div>
       </div>
 
- <?php include "../nienluan/include/footer.php"; ?>
+ <?php include "../ct275/include/footer.php"; ?>

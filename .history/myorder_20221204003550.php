@@ -1,4 +1,4 @@
-<?php include "../nienluan/include/header.php"; ?>
+<?php include "./include/header.php"; ?>
 <?php
   $checkLogin = Session::get('userLogin');
   if(!$checkLogin) {
@@ -132,5 +132,4 @@
           </div>
         </div>
       </div>
-
-<?php include "../nienluan/include/footer.php"; ?>
+ <?php include "./include/footer.php"; ?>

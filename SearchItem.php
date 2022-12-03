@@ -450,6 +450,6 @@
   } else {
     header("Location:index.php");
   }
-  include "include/footer.php";
+  include "./include/footer.php";
 ?>
 

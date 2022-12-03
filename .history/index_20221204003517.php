@@ -1,11 +1,5 @@
 <?php
-  include "../NienLuan/include/header.php";
-?>
-<?php
-  if($_SERVER['REQUEST_METHOD']=='POST' && $_POST['search']!='') {
-    $tukhoa = $_POST['search'];
-    $search_product = $pd->searchProduct($tukhoa);
-
+  include "./include/header.php";
 ?>
       <div class="app__container">
         <div class="grid">
@@ -140,13 +134,6 @@
             </div>
 
             <div class="grid__column-10">
-              <div class="text-search-content">
-                <i class="text-search-icon fas fa-search-plus"></i>
-                <span class="text-search-content-title"
-                  >Kết quả của tìm kiếm "
-                  <span class="text-search-main"><?php echo $tukhoa;?></span> "</span
-                >
-              </div>
               <!-- Home Filter -->
               <div class="home-filter">
                 <span class="home-filter__label">Sắp xếp theo</span>
@@ -209,7 +196,7 @@
               <div class="home-product page-current">
                 <div class="grid__row" style="width:100%">
                 <?php
-                  $getProduct = $pd->searchProduct($tukhoa);
+                  $getProduct = $pd->getProduct();
                   if($getProduct) {
                     while ($result = $getProduct->fetch_assoc()){
                   ?>
@@ -229,11 +216,11 @@
                           ?>
                         </h4>
                         <div class="home-product-item__price">
-                          <span class="home-product-item__price-old"
+                          <!-- <span class="home-product-item__price-old"
                             >35.990.000đ</span
-                          >
+                          > -->
                           <span class="home-product-item__price-current"
-                            >30.990.000đ</span
+                            ><?php echo $fm->format_currency($result['price']).' VNĐ'; ?></span
                           >
                         </div>
                         <div class="home-product-item__action">
@@ -275,7 +262,7 @@
                               class="home-product-item__star--gold fas fa-star"
                             ></i>
                           </div>
-                          <span class="home-product-item__sold">18 Đã bán</span>
+                          <!-- <span class="home-product-item__sold">18 Đã bán</span> -->
                         </div>
                         <div class="home-product-item__origin">
                           <span class="home-product-item__brand">NMK-Shop</span>
@@ -309,96 +296,6 @@
                     }
                   };
                   ?>
-                </div>
-              </div>
-              <div class="home-product">
-                <div class="grid__row laptop-item">
-                  <div class="grid__column-2-4">
-                    <a href="./ItemDes.php" class="home-product-item__link">
-                      <div class="home-product-item">
-                        <div
-                          class="home-product-item__img"
-                          style="
-                            background-image: url(https://cf.shopee.vn/file/bf807aaeacc93e2e417fd0fff7258b3d_tn);
-                          "
-                        ></div>
-                        <h4 class="home-product-item__name">
-                          Laptop Acer Nitro 5 AN515-45-R0B6 GeForce® RTX3060 6GB
-                          R7-5800H 8G 512G 144Hz W10
-                        </h4>
-                        <div class="home-product-item__price">
-                          <span class="home-product-item__price-old"
-                            >35.990.000đ</span
-                          >
-                          <span class="home-product-item__price-current"
-                            >30.990.000đ</span
-                          >
-                        </div>
-                        <div class="home-product-item__action">
-                          <span
-                            class="
-                              home-product-item__like
-                              home-product-item__like--liked
-                            "
-                          >
-                            <i
-                              class="
-                                home-product-item__like-icon-empty
-                                far
-                                fa-heart
-                              "
-                            ></i>
-                            <i
-                              class="
-                                home-product-item__like-icon-fill
-                                fas
-                                fa-heart
-                              "
-                            ></i>
-                          </span>
-                          <div class="home-product-item__rating">
-                            <i
-                              class="home-product-item__star--gold fas fa-star"
-                            ></i>
-                            <i
-                              class="home-product-item__star--gold fas fa-star"
-                            ></i>
-                            <i
-                              class="home-product-item__star--gold fas fa-star"
-                            ></i>
-                            <i
-                              class="home-product-item__star--gold fas fa-star"
-                            ></i>
-                            <i
-                              class="home-product-item__star--gold fas fa-star"
-                            ></i>
-                          </div>
-                          <span class="home-product-item__sold">18 Đã bán</span>
-                        </div>
-                        <div class="home-product-item__origin">
-                          <span class="home-product-item__brand">NMK-Shop</span>
-                          <span class="home-product-item__origin-name"
-                            >Cần Thơ</span
-                          >
-                        </div>
-                        <div class="home-product-item__favourite">
-                          <i class="fas fa-check"></i>
-                          <span>Yêu thích</span>
-                        </div>
-                        <div class="home-product-item__sale-off">
-                          <span class="home-product-item__sale-off-percent"
-                            >14%</span
-                          >
-                          <span class="home-product-item__sale-off-label"
-                            >GIẢM</span
-                          >
-                        </div>
-                        <div class="home-product-item__same">
-                          <a href="">Tìm sản phẩm tương tự</a>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
                 </div>
               </div>
               <!-- Pagination -->
@@ -447,9 +344,5 @@
         </div>
       </div>
 <?php
-  } else {
-    header("Location:index.php");
-  }
-  include "include/footer.php";
+  include "./include/footer.php";
 ?>
-

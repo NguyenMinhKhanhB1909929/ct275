@@ -126,4 +126,4 @@
         </div>
       </div>
 
-<?php include "../nienluan/include/footer.php"; ?>
+<?php include "./include/footer.php"; ?>

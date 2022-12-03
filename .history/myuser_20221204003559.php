@@ -1,4 +1,4 @@
-<?php include "../nienluan/include/header.php"; ?>
+<?php include "./include/header.php"; ?>
 <?php
           if(isset($_POST['save'])) {
             $id = $id = Session::get('userId');
@@ -127,8 +127,9 @@
                               <div class="myuser__content-label">Địa chỉ:</div>
                               <input
                                 type="text"
+                                name="diachi"
                                 class="myuser__content-address-input"
-                                value="46/14, KV5"
+                                value="<?php echo $resultUser['diachi'];?>"
                               />
                             </div>
                             <div class="myuser__content-address-des-wrap">
@@ -192,4 +193,4 @@
 <?php       }
     }
   }?>
- <?php include "../nienluan/include/footer.php"; ?>
+ <?php include "./include/footer.php"; ?>

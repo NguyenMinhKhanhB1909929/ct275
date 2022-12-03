@@ -1,4 +1,4 @@
-<?php include "../nienluan/include/header.php"; ?>
+<?php include "./include/header.php"; ?>
 
       <div class="app__container">
         <div class="grid">
@@ -110,4 +110,4 @@
         </div>
       </div>
 
- <?php include "../nienluan/include/footer.php"; ?>
+ <?php include "./include/footer.php"; ?>

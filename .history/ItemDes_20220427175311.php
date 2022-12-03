@@ -481,4 +481,4 @@
             };
             ?>
 
- <?php include "./include/footer.php"; ?>
+<?php include "../nienluan/include/footer.php"; ?>
